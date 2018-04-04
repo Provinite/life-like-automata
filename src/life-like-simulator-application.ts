@@ -71,9 +71,10 @@ export class LifeLikeSimulatorApplication {
 
     private async getBoard(retry: boolean = true): Promise<GameBoard> {
         let booleanArray: boolean[][];
-        let isValid: boolean = true;
+        let isValid: boolean;
         let resultRows: string[];
         do {
+            isValid = true;
             let result: string;
             result = await this.ui.prompt({
                 message: "Enter your start state. Enter a semicolon (;) to finish. Enter \";\" to use a randomized board [random] \n",
@@ -96,6 +97,9 @@ export class LifeLikeSimulatorApplication {
             resultRows = result.split("\n");
 
             for (let row: number = 0; row < resultRows.length; row++) {
+                if (!isValid)
+                    break;
+                    
                 if (resultRows[row].length == 0)
                     continue;
                 let booleanArrayRow: boolean[] = [];
