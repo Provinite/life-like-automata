@@ -40,7 +40,7 @@ describe("LifeLikeRuleset", () => {
             let n : number = 0;
             for (let neighborhoodArray of neighborhoods) {
                 let neighborhood : Neighborhood = NeighborhoodUtils.fromBooleanArray(neighborhoodArray);
-                it(`Correctly kills test cell #${n} (${neighborhood})`, ()=> {
+                it(`Correctly kills test cell #${n++} (${neighborhood})`, ()=> {
                     expect(ruleset.evaluate(neighborhood)).to.equal(false);
                 });    
             }
