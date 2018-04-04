@@ -2,8 +2,22 @@ import { GameBoard } from './game-board'
 import { RuleSet } from './rule-set'
 import { NeighborhoodUtils } from './neighborhood'
 import { Neighborhood, NeighborhoodPositions} from './neighborhood'
+/**
+* Responsible for simulating 2d cellular automata. Can be used with any ruleset which
+* depends only upon a cell's Moore Neighborhood (https://en.wikipedia.org/wiki/Moore_neighborhood)
+* to determine its state. 
+*/
 export class LifeLikeIterator {
+    /**
+    * This ruleset will be used to update each cell based on its neighborhood.
+    */
     private ruleset : RuleSet<Neighborhood, boolean>;
+    
+    /**
+    * Creates a LifeLikeIterator that will use the given RuleSet
+    * @param {RuleSet<Neighborhood, boolean>} ruleset - A ruleset that will be used to map neighborhoods to cell's new states.
+    * @throws **TypeError** if no RuleSet is provided. 
+    */
     constructor(ruleset : RuleSet<Neighborhood, boolean> ) {
         if (ruleset == undefined) {
             throw new TypeError("A ruleset is required to construct a LifeLikeIterator.");
@@ -11,6 +25,13 @@ export class LifeLikeIterator {
         this.ruleset = ruleset;
     }
     
+    /**
+    * Simulates a GameBoard for a given number of iterations and then returns the resulting board.
+    * Uses a sliding window to evaluate cells' neighborhoods in row order.
+    * @param {GameBoard} board - The board to simulate.
+    * @param {number} iterations - The number of generations to simulate.
+    * @returns A GameBoard representing the state of the automaton after all iterations are completed.
+    */
     runBoard(board: GameBoard, iterations : number = 1): GameBoard {
         for (let iteration : number = 0; iteration < iterations; iteration++) {        
             let newBoard : boolean[][] = [];
@@ -33,7 +54,10 @@ export class LifeLikeIterator {
             return GameBoard.fromBooleanArray(newBoard);
         }
     }
-
+    
+    /**
+    * @deprecated
+    */
     runCell(board: GameBoard, x: number, y: number): boolean {
         return false;
     }

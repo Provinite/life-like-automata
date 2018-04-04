@@ -69,6 +69,15 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Responsible for simulating 2d cellular automata. Can be used with any ruleset which
+							depends only upon a cell&#39;s Moore Neighborhood (<a href="https://en.wikipedia.org/wiki/Moore_neighborhood">https://en.wikipedia.org/wiki/Moore_neighborhood</a>)
+						to determine its state.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -115,13 +124,28 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/5868a28/src/life-like-iterator.ts#L6">life-like-iterator.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/71dd53f/src/life-like-iterator.ts#L14">life-like-iterator.ts:14</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a LifeLikeIterator that will use the given RuleSet</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p><strong>TypeError</strong> if no RuleSet is provided.</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>ruleset: <a href="../interfaces/_rule_set_.ruleset.html" class="tsd-signature-type">RuleSet</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_neighborhood_.html#neighborhood" class="tsd-signature-type">Neighborhood</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>A ruleset that will be used to map neighborhoods to cell&#39;s new states.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_life_like_iterator_.lifelikeiterator.html" class="tsd-signature-type">LifeLikeIterator</a></h4>
@@ -137,9 +161,14 @@
 					<div class="tsd-signature tsd-kind-icon">ruleset<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_rule_set_.ruleset.html" class="tsd-signature-type">RuleSet</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_neighborhood_.html#neighborhood" class="tsd-signature-type">Neighborhood</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/5868a28/src/life-like-iterator.ts#L6">life-like-iterator.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/71dd53f/src/life-like-iterator.ts#L14">life-like-iterator.ts:14</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>This ruleset will be used to update each cell based on its neighborhood.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -154,19 +183,32 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/5868a28/src/life-like-iterator.ts#L14">life-like-iterator.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/71dd53f/src/life-like-iterator.ts#L35">life-like-iterator.ts:35</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Simulates a GameBoard for a given number of iterations and then returns the resulting board.
+									Uses a sliding window to evaluate cells&#39; neighborhoods in row order.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>board: <a href="_game_board_.gameboard.html" class="tsd-signature-type">GameBoard</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The board to simulate.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> iterations: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of generations to simulate.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_game_board_.gameboard.html" class="tsd-signature-type">GameBoard</a></h4>
+							<p>A GameBoard representing the state of the automaton after all iterations are completed.</p>
 						</li>
 					</ul>
 				</section>
@@ -180,9 +222,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/5868a28/src/life-like-iterator.ts#L37">life-like-iterator.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/71dd53f/src/life-like-iterator.ts#L61">life-like-iterator.ts:61</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd></dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
