@@ -110,9 +110,9 @@ export class LifeLikeSimulatorApplication {
     async start() {
         let response : number
         this.stdout.write(
-    ` ---------------------------------
-    | Life Like Cellular Automata Sim |
-     ---------------------------------\n\n`);
+            " ---------------------------------\n" +
+            "| Life Like Cellular Automata Sim |\n" +
+            " ---------------------------------\n\n");
         do {
             let ruleset : LifeLikeRuleset;
             let iterator : LifeLikeIterator;
