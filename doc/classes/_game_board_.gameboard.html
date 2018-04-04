@@ -73,8 +73,8 @@
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
 						<p>Represents a two-dimensional orthogonal grid of square cells that have
-							two states. It may or may not be rectangular. The board&#39;s indices can be
-						visualized like so</p>
+							two states. Indices are in (row, column) order and begin in the top-left corner
+						at (0,0). Use the <code>fromBooleanArray</code> or <code>fromSize</code> factory methods to get an instance.</p>
 						<pre><code>________________________
 | <span class="hljs-number">0</span>,<span class="hljs-number">0</span> | <span class="hljs-number">0</span>,<span class="hljs-number">1</span> | <span class="hljs-number">0</span>,<span class="hljs-number">2</span> | <span class="hljs-number">0</span>,<span class="hljs-number">3</span>|
 | <span class="hljs-number">1</span>,<span class="hljs-number">0</span> | <span class="hljs-number">1</span>,<span class="hljs-number">1</span> | <span class="hljs-number">1</span>,<span class="hljs-number">2</span> | <span class="hljs-number">1</span>,<span class="hljs-number">3</span>|
@@ -137,9 +137,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/game-board.ts#L67">game-board.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/5868a28/src/game-board.ts#L87">game-board.ts:87</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Not for public use.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_game_board_.gameboard.html" class="tsd-signature-type">GameBoard</a></h4>
 						</li>
 					</ul>
@@ -153,9 +158,14 @@
 					<div class="tsd-signature tsd-kind-icon">_board<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/game-board.ts#L15">game-board.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/5868a28/src/game-board.ts#L18">game-board.ts:18</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Represents the state of the board.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -170,16 +180,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/game-board.ts#L140">game-board.ts:140</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/5868a28/src/game-board.ts#L163">game-board.ts:163</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Helper method to validate a value against a range.</p>
+									<p>Helper method to validate a number against a range.</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>throws</dt>
-									<dd><p>{RangeError} if value is not in the range [min, max).</p>
+									<dd><p><strong>RangeError</strong> if <code>value</code> is not in the range [min, max).</p>
 									</dd>
 								</dl>
 							</div>
@@ -200,9 +210,15 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> max: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;this.getRowCount()</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The maximum value (exclusive) of the range.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> min: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The minimum value (inclusive) of the range.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -219,7 +235,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/game-board.ts#L97">game-board.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/5868a28/src/game-board.ts#L120">game-board.ts:120</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -228,7 +244,7 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>throws</dt>
-									<dd><p>{RangeError} if the given position is out of range and no
+									<dd><p><strong>RangeError</strong> if the given position is out of range and no
 										defaultValue is specified.</p>
 									</dd>
 								</dl>
@@ -249,6 +265,10 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> defaultValue: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The default value to return if the given
+										position is out of range. If not set, a RangeError will be thrown instead.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -267,7 +287,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/game-board.ts#L117">game-board.ts:117</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/5868a28/src/game-board.ts#L140">game-board.ts:140</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -291,7 +311,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/game-board.ts#L126">game-board.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/5868a28/src/game-board.ts#L149">game-board.ts:149</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -321,7 +341,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/game-board.ts#L79">game-board.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/5868a28/src/game-board.ts#L102">game-board.ts:102</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -330,7 +350,7 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>throws</dt>
-									<dd><p>{RangeError} if the given position is out of range.</p>
+									<dd><p><strong>RangeError</strong> if the given position is out of range.</p>
 									</dd>
 								</dl>
 							</div>
@@ -369,10 +389,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/game-board.ts#L42">game-board.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/5868a28/src/game-board.ts#L55">game-board.ts:55</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a <code>boolean[][]</code> from a GameBoard. <code>true</code> represents live cells, <code>false</code> dead ones</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>A boolean[][] with the same state as this GameBoard</p>
 						</li>
 					</ul>
 				</section>
@@ -386,16 +412,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/game-board.ts#L17">game-board.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/5868a28/src/game-board.ts#L26">game-board.ts:26</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Factory method to create a GameBoard from a representative boolean array.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>initialBoard: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The initial board state.
+										<code>true</code> represents live cells, <code>false</code> dead ones.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_game_board_.gameboard.html" class="tsd-signature-type">GameBoard</a></h4>
+							<p>A GameBoard with the same state as <code>initialBoard</code></p>
 						</li>
 					</ul>
 				</section>
@@ -409,22 +445,37 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/game-board.ts#L52">game-board.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/5868a28/src/game-board.ts#L72">game-board.ts:72</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Factory method to create an GameBoard of the given size using a single initial value</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>rows: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of rows to create.</p>
+									</div>
 								</li>
 								<li>
 									<h5>columns: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of cells in each row.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> initialValue: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Initial value for all cells in the new GameBoard.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_game_board_.gameboard.html" class="tsd-signature-type">GameBoard</a></h4>
+							<p>A GameBoard of the specified size with each cell set to <code>initialValue</code></p>
 						</li>
 					</ul>
 				</section>

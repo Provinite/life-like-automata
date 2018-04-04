@@ -1,7 +1,7 @@
 /**
 * Represents a two-dimensional orthogonal grid of square cells that have 
-* two states. It may or may not be rectangular. The board's indices can be 
-* visualized like so
+* two states. Indices are in (row, column) order and begin in the top-left corner
+* at (0,0). Use the `fromBooleanArray` or `fromSize` factory methods to get an instance.
 * ```
 * ________________________
 * | 0,0 | 0,1 | 0,2 | 0,3|
@@ -12,8 +12,17 @@
 * ```
 */
 export class GameBoard {
+    /**
+    * Represents the state of the board.
+    */
     private _board: boolean[][];
-
+    
+    /**
+    * Factory method to create a GameBoard from a representative boolean array.
+    * @param {boolean[][]} initialBoard - The initial board state. 
+    * `true` represents live cells, `false` dead ones.
+    * @returns A GameBoard with the same state as `initialBoard`
+    */
     static fromBooleanArray(initialBoard: boolean[][]): GameBoard {
         if (initialBoard == undefined) {
             throw new TypeError("The game board must be defined.");
@@ -39,6 +48,10 @@ export class GameBoard {
         return board;
     }
     
+    /**
+    * Creates a `boolean[][]` from a GameBoard. `true` represents live cells, `false` dead ones
+    * @returns A boolean[][] with the same state as this GameBoard
+    */
     toBooleanArray() : boolean[][] {
         let result : boolean[][] = [];
         for (let row : number = 0; row < this._board.length; row++) {
@@ -48,7 +61,14 @@ export class GameBoard {
         }
         return result;
     }
-
+    
+    /**
+    * Factory method to create an GameBoard of the given size using a single initial value
+    * @param {number} rows - The number of rows to create.
+    * @param {number} columns - The number of cells in each row.
+    * @param {bolean} initialValue - Initial value for all cells in the new GameBoard.
+    * @returns A GameBoard of the specified size with each cell set to `initialValue`
+    */ 
     static fromSize(rows: number, columns: number, initialValue: boolean = false): GameBoard {
         if (rows < 1 || columns < 1) {
             throw new RangeError("A game board must have at least 1 row and 1 column.");
@@ -65,7 +85,10 @@ export class GameBoard {
         }
         return board;
     }
-
+    
+    /**
+    * Not for public use.
+    */
     private constructor() {
     }
 
@@ -74,7 +97,7 @@ export class GameBoard {
     * @param {number} row - The row of the cell to be written to.
     * @param {number} column - The column of the cell to be written to.
     * @param {boolean} value - The value to write to the cell.
-    * @throws {RangeError} if the given position is out of range.
+    * @throws **RangeError** if the given position is out of range.
     */
     set(row: number, column: number, value: boolean) {
         this._checkRange("Row", row);
@@ -87,11 +110,11 @@ export class GameBoard {
     * Read the state of the cell at [row][column]
     * @param {number} row - The row of the cell to read.
     * @param {number} column - The column of the cell to read.
-    * @param {boolean} [defaultValue] - The default value to return if the given
+    * @param {boolean} defaultValue - The default value to return if the given
     * position is out of range. If not set, a RangeError will be thrown instead.
-    * @return {boolean} The value at [row][column], or defaultValue when out 
+    * @returns The value at [row][column], or defaultValue when out 
     * of range.
-    * @throws {RangeError} if the given position is out of range and no
+    * @throws **RangeError** if the given position is out of range and no
     * defaultValue is specified.
     */
     get(row: number, column: number, defaultValue?: boolean) {
@@ -111,7 +134,7 @@ export class GameBoard {
 
     /**
     * Get the number of rows on this board.
-    * @return {number} The number of rows on the board. Valid row indices are in
+    * @returns The number of rows on the board. Valid row indices are in
     * [0, result).
     */
     getRowCount(): number {
@@ -120,7 +143,7 @@ export class GameBoard {
 
     /**
     * Get the length (number of columns) in a given row.
-    * @return {number} The number of columns in the given row. Valid column
+    * @returns The number of columns in the given row. Valid column
     * indices are in [0, result)
     */
     getRowLength(row: number): number {
@@ -129,13 +152,13 @@ export class GameBoard {
     }
 
     /**
-    * Helper method to validate a value against a range.
+    * Helper method to validate a number against a range.
     * @param {string} indexType - A human readable description of the type of
     * index that is being checked.
     * @param {number} value - The value to check.
-    * @param {number} [max=getRowCount()] - The maximum value (exclusive) of the range.
-    * @param {number} [min=0] - The minimum value (inclusive) of the range.
-    * @throws {RangeError} if value is not in the range [min, max). 
+    * @param {number} max - The maximum value (exclusive) of the range.
+    * @param {number} min - The minimum value (inclusive) of the range.
+    * @throws **RangeError** if `value` is not in the range [min, max). 
     */
     private _checkRange(indexType: string, value: number, max: number = this.getRowCount(), min: number = 0): void {
         if (value >= min && value < max) {
