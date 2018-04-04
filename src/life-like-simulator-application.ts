@@ -133,16 +133,31 @@ export class LifeLikeSimulatorApplication {
             
             response = await this.ui.menu("Main Menu", mainMenuOptions)
             if (response == RESPONSE.LIFE || response == RESPONSE.REPLICATOR || response == RESPONSE.CUSTOM) {
+                this.stdout.write("\n");
                 let rulesetString: string;
                 if (response == RESPONSE.LIFE) {
+                    this.stdout.write("Let's simulate a life automaton.\n\n");
                     rulesetString = LifeLikeRuleset.NAMED_GAMES.LIFE;
                     ruleset = new LifeLikeRuleset(rulesetString);
+                    
                 } else if (response == RESPONSE.REPLICATOR) {
+                    this.stdout.write("Let's simulate a replicator automaton.\n\n");
                     rulesetString = LifeLikeRuleset.NAMED_GAMES.REPLICATOR;
                     ruleset = new LifeLikeRuleset(rulesetString);
+                    
                 } else if (response == RESPONSE.CUSTOM) {
+                    this.stdout.write("Let's create a custom life-like automaton.\n\n");
                     while (ruleset == undefined) {
-                        rulesetString = await this.ui.prompt("Enter your ruleset", "B3S23");
+                        this.stdout.write(
+                            "First, enter all neighbor counts that should result in a cell being born. " +
+                            "For example enter \"23\" if cells should be born when they have 2 or 3 neighbors.\n"
+                        )
+                        let birthString = await this.ui.prompt("Cells are born on", "3");
+                        
+                        this.stdout.write("\nNow enter all neighbor counts that should result in a cell surviving if it is already alive.\n");
+                        let surviveString = await this.ui.prompt("Cells survive on", "23");
+                        this.stdout.write("\n");
+                        rulesetString = "B" + birthString + "S" + surviveString
                         try {
                             ruleset = new LifeLikeRuleset(rulesetString);
                         } catch (e) {
@@ -172,6 +187,7 @@ export class LifeLikeSimulatorApplication {
                 this.demos();
             }
         } while (response != RESPONSE.EXIT)
+        this.stdout.write("\nGoodbye!")
     }
 
     demos(): void {
