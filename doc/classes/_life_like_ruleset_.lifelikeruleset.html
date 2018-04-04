@@ -69,6 +69,20 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>RuleSet used to map a neighborhood to a new state for the central cell.
+							Creates a complete (512) element lookup table at construction based on the provided
+						ruleset string. This class is capable of generating a lookup table for any life-like cellular automaton.</p>
+					</div>
+					<p>See also</p>
+					<ul>
+						<li><a href="https://en.wikipedia.org/wiki/Life-like_cellular_automaton">https://en.wikipedia.org/wiki/Life-like_cellular_automaton</a></li>
+						<li><a href="https://en.wikipedia.org/wiki/Moore_neighborhood">https://en.wikipedia.org/wiki/Moore_neighborhood</a></li>
+					</ul>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -129,13 +143,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/71dd53f/src/life-like-ruleset.ts#L20">life-like-ruleset.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/b04930c/src/life-like-ruleset.ts#L39">life-like-ruleset.ts:39</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a RuleSet that provides O(1) lookups for any neighborhood using the given rules.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> rules: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;LifeLikeRuleset.NAMED_GAMES.LIFE</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>A string indicating the rules of the game.
+												The format of this string is <code>BnnSnn</code> where <code>n</code> are numbers of live neighbors.
+												Neighbor counts appearing after a <code>B</code> will cause dead cells to come to life (<strong>B</strong>irth).
+												Neighbor counts appearing after a <code>S</code> will cause live cells to remain living (<strong>S</strong>urvive).
+											For example, Conway&#39;s Game of Life would use the ruleset B3S23 (Born with 3 neighbors, Survive with 2 or 3).</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_life_like_ruleset_.lifelikeruleset.html" class="tsd-signature-type">LifeLikeRuleset</a></h4>
@@ -151,9 +179,14 @@
 					<div class="tsd-signature tsd-kind-icon">_lookup<wbr>Table<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/71dd53f/src/life-like-ruleset.ts#L14">life-like-ruleset.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/b04930c/src/life-like-ruleset.ts#L31">life-like-ruleset.ts:31</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Table used to retrieve the outcome of a given neighborhood.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
 					<a name="error_invalid_rule_string" class="tsd-anchor"></a>
@@ -161,7 +194,7 @@
 					<div class="tsd-signature tsd-kind-icon">ERROR_<wbr>INVALID_<wbr>RULE_<wbr>STRING<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"Invalid ruleset. Rulesets must start with B or S, and may only contain B, S, and digits."</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Invalid ruleset. Rulesets must start with B or S, and may only contain B, S, and digits.&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/71dd53f/src/life-like-ruleset.ts#L12">life-like-ruleset.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/b04930c/src/life-like-ruleset.ts#L21">life-like-ruleset.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -171,9 +204,14 @@
 					<div class="tsd-signature tsd-kind-icon">NUM_<wbr>NEIGHBORHOODS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;512</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/71dd53f/src/life-like-ruleset.ts#L13">life-like-ruleset.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/b04930c/src/life-like-ruleset.ts#L26">life-like-ruleset.ts:26</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>There are 2^9 (512) distinct Moore neighborhoods.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -188,13 +226,23 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/71dd53f/src/life-like-ruleset.ts#L58">life-like-ruleset.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/b04930c/src/life-like-ruleset.ts#L96">life-like-ruleset.ts:96</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a complete lookup table for the given intermediate rules array.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>neighborCountRules: <a href="../enums/_life_like_ruleset_.cellaction.html" class="tsd-signature-type">CellAction</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A 2-d array of CellActions
+											<code>neighborCountRules[i][s]</code> represents the action to take when a cell has
+										current state <code>s</code> (0: dead, 1: alive) and <code>i</code> neighbors.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -211,16 +259,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/71dd53f/src/life-like-ruleset.ts#L54">life-like-ruleset.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/b04930c/src/life-like-ruleset.ts#L86">life-like-ruleset.ts:86</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Performs an O(1) lookup on the given neighborhood.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>neighborhood: <a href="../modules/_neighborhood_.html#neighborhood" class="tsd-signature-type">Neighborhood</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The neighborhood whose center cell is to be evaluated.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>The new state of the central cell of <code>neighborhood</code>.</p>
 						</li>
 					</ul>
 				</section>
@@ -233,16 +290,21 @@
 					<div class="tsd-signature tsd-kind-icon">NAMED_<wbr>GAMES<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/71dd53f/src/life-like-ruleset.ts#L17">life-like-ruleset.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/b04930c/src/life-like-ruleset.ts#L36">life-like-ruleset.ts:36</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Named ruleset strings</p>
+						</div>
+					</div>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="named_games.life" class="tsd-anchor"></a>
 						<h3>LIFE</h3>
 						<div class="tsd-signature tsd-kind-icon">LIFE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;B3S23&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/71dd53f/src/life-like-ruleset.ts#L18">life-like-ruleset.ts:18</a></li>
+								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/b04930c/src/life-like-ruleset.ts#L37">life-like-ruleset.ts:37</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -252,7 +314,7 @@
 						<div class="tsd-signature tsd-kind-icon">REPLICATOR<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;B1357S1357&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/71dd53f/src/life-like-ruleset.ts#L19">life-like-ruleset.ts:19</a></li>
+								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/b04930c/src/life-like-ruleset.ts#L38">life-like-ruleset.ts:38</a></li>
 							</ul>
 						</aside>
 					</section>
