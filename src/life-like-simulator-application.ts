@@ -109,6 +109,13 @@ export class LifeLikeSimulatorApplication {
 
     async start() {
         let response: number
+        const RESPONSE = {
+            LIFE: 0,
+            REPLICATOR: 1,
+            CUSTOM: 2,
+            DEMOS: 3,
+            EXIT: 4
+        };
         this.stdout.write(
             " ---------------------------------\n" +
             "| Life Like Cellular Automata Sim |\n" +
@@ -123,17 +130,17 @@ export class LifeLikeSimulatorApplication {
                 "Demos",
                 "Exit"
             ];
-
+            
             response = await this.ui.menu("Main Menu", mainMenuOptions)
-            if (response == 0 || response == 1 || response == 2) {
-                let rulesetString: string = response == 0 ? LifeLikeRuleset.NAMED_GAMES.LIFE : LifeLikeRuleset.NAMED_GAMES.REPLICATOR
-                if (response == 0) {
+            if (response == RESPONSE.LIFE || response == RESPONSE.REPLICATOR || response == RESPONSE.CUSTOM) {
+                let rulesetString: string;
+                if (response == RESPONSE.LIFE) {
                     rulesetString = LifeLikeRuleset.NAMED_GAMES.LIFE;
                     ruleset = new LifeLikeRuleset(rulesetString);
-                } else if (response == 1) {
+                } else if (response == RESPONSE.REPLICATOR) {
                     rulesetString = LifeLikeRuleset.NAMED_GAMES.REPLICATOR;
                     ruleset = new LifeLikeRuleset(rulesetString);
-                } else if (response == 2) {
+                } else if (response == RESPONSE.CUSTOM) {
                     while (ruleset == undefined) {
                         rulesetString = await this.ui.prompt("Enter your ruleset", "B3S23");
                         try {
@@ -161,10 +168,10 @@ export class LifeLikeSimulatorApplication {
                 this.stdout.write(`\n[${rulesetString}] for ${generations} generations @ ${delay}ms\n\n`);
                 board = await this.animateBoard(iterator, board, generations, delay);
                 this.stdout.write("\n");
-            } else if (response == 3) {
+            } else if (response == RESPONSE.DEMOS) {
                 this.demos();
             }
-        } while (response != 4)
+        } while (response != RESPONSE.EXIT)
     }
 
     demos(): void {
