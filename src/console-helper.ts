@@ -115,14 +115,14 @@ export class ConsoleHelper {
     }
     
     /**
-        Prompts the user with a given message and default value (if provided) and
-        return the response. @see PromptOptions for configuration details.
-        @param {string} message - The message to prompt with.
-        @param {any} defaultValue - The default value to return if no input is given.
-        @param {PromptOptions} options - @see PromptOptions documentation for details.
-        @returns A promise which will resolve with the response once user interaction is complete.
+    * Prompts the user with a given message and default value (if provided) and
+    * return the response. @see PromptOptions for configuration details.
+    * @param {string} message - The message to prompt with.
+    * @param {any} defaultValue - The default value to return if no input is given.
+    * @param {PromptOptions} options - @see PromptOptions documentation for details.
+    * @returns A promise which will resolve with the response once user interaction is complete.
     */
-    async prompt(message : string, defaultValue : any) : Promise<any>;
+    async prompt(message : string, defaultValue ?: any) : Promise<any>;
     async prompt(options : PromptOptions) : Promise<any>;
     async prompt(optionsOrMessage : string | PromptOptions, defaultValue ?: any) : Promise<any> {
         let options : PromptOptions;
@@ -197,7 +197,7 @@ export class ConsoleHelper {
     * @param {string} title - The name of the menu (displayed along the top row).
     * @param {string[]} options - The choices to present to the user.
     * @param {number} defaultValue - The index of the default option.
-    * @returns The index of the selected option.
+    * @returns A promise which will resolve to the index of the selected option once user interactino is complete.
     */
     async menu(title : string, options : string[], defaultValue ?: number) {
         this.stdout.write(`  | ${title}\n`);
