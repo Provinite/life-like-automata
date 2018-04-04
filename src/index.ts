@@ -111,62 +111,66 @@ let animateBoard = async (iterator : LifeLikeIterator, board : GameBoard, genera
     });
 }
 
-(async () => {
-    
-    let ruleset : LifeLikeRuleset;
-    let iterator : LifeLikeIterator;
-
+let main = async () => {
+    let response : number
     stdout.write(
 ` ---------------------------------
 | Life Like Cellular Automata Sim |
  ---------------------------------\n\n`);
-    let mainMenuOptions = [
-        `Conway's Game of Life [${LifeLikeRuleset.NAMED_GAMES.LIFE}]`,
-        `Replicator [${LifeLikeRuleset.NAMED_GAMES.REPLICATOR}]`,
-        "Custom Game",
-        "Demos",
-        "Exit"
-    ];
-    
-    let response : number = await ui.menu("Main Menu", mainMenuOptions)
-    if (response == 0 || response == 1 || response == 2) {
-        let rulesetString : string = response == 0 ? LifeLikeRuleset.NAMED_GAMES.LIFE : LifeLikeRuleset.NAMED_GAMES.REPLICATOR
-        if (response == 0) {
-            rulesetString = LifeLikeRuleset.NAMED_GAMES.LIFE;
-            ruleset = new LifeLikeRuleset(rulesetString);
-        } else if (response == 1) {
-            rulesetString = LifeLikeRuleset.NAMED_GAMES.REPLICATOR;
-            ruleset = new LifeLikeRuleset(rulesetString);
-        } else if (response == 2) {
-            while (ruleset == undefined) {
-                rulesetString = await ui.prompt("Enter your ruleset", "B3S23");
-                try {
-                    ruleset = new LifeLikeRuleset(rulesetString);
-                } catch (e) {
-                    stdout.write(`${e.message}\n`);
+    do {
+        let ruleset : LifeLikeRuleset;
+        let iterator : LifeLikeIterator;
+        let mainMenuOptions = [
+            `Conway's Game of Life [${LifeLikeRuleset.NAMED_GAMES.LIFE}]`,
+            `Replicator [${LifeLikeRuleset.NAMED_GAMES.REPLICATOR}]`,
+            "Custom Game",
+            "Demos",
+            "Exit"
+        ];
+        
+        response = await ui.menu("Main Menu", mainMenuOptions)
+        if (response == 0 || response == 1 || response == 2) {
+            let rulesetString : string = response == 0 ? LifeLikeRuleset.NAMED_GAMES.LIFE : LifeLikeRuleset.NAMED_GAMES.REPLICATOR
+            if (response == 0) {
+                rulesetString = LifeLikeRuleset.NAMED_GAMES.LIFE;
+                ruleset = new LifeLikeRuleset(rulesetString);
+            } else if (response == 1) {
+                rulesetString = LifeLikeRuleset.NAMED_GAMES.REPLICATOR;
+                ruleset = new LifeLikeRuleset(rulesetString);
+            } else if (response == 2) {
+                while (ruleset == undefined) {
+                    rulesetString = await ui.prompt("Enter your ruleset", "B3S23");
+                    try {
+                        ruleset = new LifeLikeRuleset(rulesetString);
+                    } catch (e) {
+                        stdout.write(`${e.message}\n`);
+                    }
                 }
             }
+            iterator = new LifeLikeIterator(ruleset);
+            
+            let board : GameBoard = await getBoard();
+            let isNumericAndGreaterThanZero = (data : any) => !Number.isNaN(+data) && +data > 0
+            let generations : number = +await ui.prompt({
+                message: "Number of generations to simulate",
+                defaultValue: 10,
+                validator: isNumericAndGreaterThanZero
+            });
+            
+            let delay : number = +await ui.prompt({
+                message: "Time between generations (milliseconds)",
+                defaultValue: 250,
+                validator: isNumericAndGreaterThanZero
+            });
+            stdout.write(`\n[${rulesetString}] for ${generations} generations @ ${delay}ms\n\n`);
+            board = await animateBoard(iterator, board, generations, delay);
+            stdout.write("\n");
+        } else if (response == 3) {
+            demos();
         }
-        iterator = new LifeLikeIterator(ruleset);
-        
-        let board : GameBoard = await getBoard();
-        let isNumericAndGreaterThanZero = (data : any) => !Number.isNaN(+data) && +data > 0
-        let generations : number = +await ui.prompt({
-            message: "Number of generations to simulate",
-            defaultValue: 10,
-            validator: isNumericAndGreaterThanZero
-        });
-        
-        let delay : number = +await ui.prompt({
-            message: "Time between generations (milliseconds)",
-            defaultValue: 250,
-            validator: isNumericAndGreaterThanZero
-        });
-        stdout.write(`\n[${rulesetString}] for ${generations} generations @ ${delay}ms\n\n`);
-        board = await animateBoard(iterator, board, generations, delay);
-    } else if (response == 3) {
-        demos();
-    } else if (response == 4) {
-        process.exit(0);
-    }
+    } while (response != 4)
+}
+(async () => {
+    await main();
+    process.exit(0);
 })();
