@@ -65,7 +65,7 @@ export class NeighborhoodUtils {
     * @returns The neighborhood with its cells shifted 1 position to the left.
     * The rightmost cells are filled with `false`. The leftmost cells are lost.
     */
-    static slideNeighborhoodRight(neighborhood: Neighborhood) {
+    static slideNeighborhoodRight(neighborhood: Neighborhood) : Neighborhood {
         //trim the most significant 3 bits
         neighborhood = BitOperations.unsetSignificantBits(neighborhood, 6);
 

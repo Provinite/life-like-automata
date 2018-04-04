@@ -4,62 +4,62 @@ import { LifeLikeRuleset } from './life-like-ruleset'
 import { ConsoleHelper } from './console-helper'
 
 export class LifeLikeSimulatorApplication {
-    private ui : ConsoleHelper;
+    private ui: ConsoleHelper;
     constructor(private stdin = process.stdin, private stdout = process.stdout) {
         this.ui = new ConsoleHelper(this.stdin, this.stdout);
     }
-    
-    private static randomBoard (rows : number = 10, columns : number = 10) : GameBoard {
-        let boardRow : boolean[];
-        let board : boolean[][] = [];
-        for (let row : number = 0; row < rows; row++) {
+
+    private static randomBoard(rows: number = 10, columns: number = 10): GameBoard {
+        let boardRow: boolean[];
+        let board: boolean[][] = [];
+        for (let row: number = 0; row < rows; row++) {
             boardRow = [];
-            for (let column : number = 0; column < columns; column++) {
+            for (let column: number = 0; column < columns; column++) {
                 boardRow.push(Math.random() >= 0.5);
             }
             board.push(boardRow);
         }
         return GameBoard.fromBooleanArray(board);
     }
-    
-    private async getBoard(retry : boolean = true) : Promise<GameBoard> {
-        let booleanArray : boolean[][];
-        let isValid : boolean = true;
-        let resultRows : string[];
+
+    private async getBoard(retry: boolean = true): Promise<GameBoard> {
+        let booleanArray: boolean[][];
+        let isValid: boolean = true;
+        let resultRows: string[];
         do {
-            let result : string;
+            let result: string;
             result = await this.ui.prompt({
-                message: "Enter your start state. Enter a semicolon (;) to finish. Enter \";\" to use a randomized board [random] \n", 
+                message: "Enter your start state. Enter a semicolon (;) to finish. Enter \";\" to use a randomized board [random] \n",
                 defaultValue: "random",
                 terminateOn: ";",
                 format: false,
-                validator: (response : string) => {
+                validator: (response: string) => {
                     if (response.trim().length == 0) {
                         return false;
                     }
                     return true;
                 }
             });
-            
+
             booleanArray = [];
             result = result.replace(/[ \t]/g, "");
             if (result == "random") {
                 return LifeLikeSimulatorApplication.randomBoard();
             }
             resultRows = result.split("\n");
-        
-            for (let row : number = 0; row < resultRows.length; row++) {
+
+            for (let row: number = 0; row < resultRows.length; row++) {
                 if (resultRows[row].length == 0)
                     continue;
-                let booleanArrayRow : boolean[] = [];
-                for (let column : number = 0; column < resultRows[row].length; column++) {
+                let booleanArrayRow: boolean[] = [];
+                for (let column: number = 0; column < resultRows[row].length; column++) {
                     let cell = resultRows[row][column];
                     if (cell == "0") {
                         booleanArrayRow.push(false);
                     } else if (cell == "1") {
                         booleanArrayRow.push(true);
                     } else {
-                        this.stdout.write(`Invalid board. Unexpected character (${cell}) at row ${row+1}, column ${column+1}\n`);
+                        this.stdout.write(`Invalid board. Unexpected character (${cell}) at row ${row + 1}, column ${column + 1}\n`);
                         isValid = false;
                         break;
                     }
@@ -69,26 +69,26 @@ export class LifeLikeSimulatorApplication {
         } while (!isValid && retry)
         return GameBoard.fromBooleanArray(booleanArray);
     }
-    
-    private drawBoard (board : GameBoard) : void {
-        let data : boolean[][] = board.toBooleanArray();
-        for (let row : number = 0; row < data.length; row++) {
+
+    private drawBoard(board: GameBoard): void {
+        let data: boolean[][] = board.toBooleanArray();
+        for (let row: number = 0; row < data.length; row++) {
             this.ui.eraseToEOL();
-            for (let col : number = 0; col < data[row].length; col++) {
+            for (let col: number = 0; col < data[row].length; col++) {
                 this.stdout.write(String(data[row][col] ? 1 : 0) + " ");
             }
             this.stdout.write("\n");
         }
     }
-    
-    private async animateBoard(iterator : LifeLikeIterator, board : GameBoard, generations : number = 1, delayMs : number = 500) : Promise<GameBoard> {
+
+    private async animateBoard(iterator: LifeLikeIterator, board: GameBoard, generations: number = 1, delayMs: number = 500): Promise<GameBoard> {
         return new Promise<GameBoard>(resolve => {
             this.stdout.write("Generation: 0\n")
             this.drawBoard(board);
-            let offset : number[] = [board.getRowCount() + 1, board.getRowLength(board.getRowCount() - 1)];
+            let offset: number[] = [board.getRowCount() + 1, board.getRowLength(board.getRowCount() - 1)];
             this.ui.moveUp(offset[0]);
             this.ui.moveLeft(offset[1]);
-            let generation : number = 0;
+            let generation: number = 0;
             let interval = setInterval(() => {
                 if (generation++ == generations) {
                     clearInterval(interval);
@@ -106,16 +106,16 @@ export class LifeLikeSimulatorApplication {
             }, delayMs);
         });
     }
-    
+
     async start() {
-        let response : number
+        let response: number
         this.stdout.write(
             " ---------------------------------\n" +
             "| Life Like Cellular Automata Sim |\n" +
             " ---------------------------------\n\n");
         do {
-            let ruleset : LifeLikeRuleset;
-            let iterator : LifeLikeIterator;
+            let ruleset: LifeLikeRuleset;
+            let iterator: LifeLikeIterator;
             let mainMenuOptions = [
                 `Conway's Game of Life [${LifeLikeRuleset.NAMED_GAMES.LIFE}]`,
                 `Replicator [${LifeLikeRuleset.NAMED_GAMES.REPLICATOR}]`,
@@ -123,10 +123,10 @@ export class LifeLikeSimulatorApplication {
                 "Demos",
                 "Exit"
             ];
-            
+
             response = await this.ui.menu("Main Menu", mainMenuOptions)
             if (response == 0 || response == 1 || response == 2) {
-                let rulesetString : string = response == 0 ? LifeLikeRuleset.NAMED_GAMES.LIFE : LifeLikeRuleset.NAMED_GAMES.REPLICATOR
+                let rulesetString: string = response == 0 ? LifeLikeRuleset.NAMED_GAMES.LIFE : LifeLikeRuleset.NAMED_GAMES.REPLICATOR
                 if (response == 0) {
                     rulesetString = LifeLikeRuleset.NAMED_GAMES.LIFE;
                     ruleset = new LifeLikeRuleset(rulesetString);
@@ -144,16 +144,16 @@ export class LifeLikeSimulatorApplication {
                     }
                 }
                 iterator = new LifeLikeIterator(ruleset);
-                
-                let board : GameBoard = await this.getBoard();
-                let isNumericAndGreaterThanZero = (data : any) => !Number.isNaN(+data) && +data > 0
-                let generations : number = +await this.ui.prompt({
+
+                let board: GameBoard = await this.getBoard();
+                let isNumericAndGreaterThanZero = (data: any) => !Number.isNaN(+data) && +data > 0
+                let generations: number = +await this.ui.prompt({
                     message: "Number of generations to simulate",
                     defaultValue: 10,
                     validator: isNumericAndGreaterThanZero
                 });
-                
-                let delay : number = +await this.ui.prompt({
+
+                let delay: number = +await this.ui.prompt({
                     message: "Time between generations (milliseconds)",
                     defaultValue: 250,
                     validator: isNumericAndGreaterThanZero
@@ -166,8 +166,8 @@ export class LifeLikeSimulatorApplication {
             }
         } while (response != 4)
     }
-    
-    demos() : void {
-        
+
+    demos(): void {
+
     }
 }

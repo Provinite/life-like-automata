@@ -93,7 +93,7 @@ export class LifeLikeRuleset implements RuleSet<Neighborhood, boolean>  {
     * `neighborCountRules[i][s]` represents the action to take when a cell has
     * current state `s` (0: dead, 1: alive) and `i` neighbors.
     */
-    private _generateLookupTable(neighborCountRules : CellAction[][]) {
+    private _generateLookupTable(neighborCountRules : CellAction[][]): void {
         this._lookupTable = [];
         for (let neighborhood : number = 0; neighborhood < LifeLikeRuleset.NUM_NEIGHBORHOODS; neighborhood++) {
             let neighborCount = 0;

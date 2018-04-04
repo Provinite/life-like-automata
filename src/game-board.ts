@@ -99,7 +99,7 @@ export class GameBoard {
     * @param {boolean} value - The value to write to the cell.
     * @throws **RangeError** if the given position is out of range.
     */
-    set(row: number, column: number, value: boolean) {
+    set(row: number, column: number, value: boolean): void {
         this._checkRange("Row", row);
         this._checkRange("Column", column, this._board[row].length);
 
@@ -117,8 +117,7 @@ export class GameBoard {
     * @throws **RangeError** if the given position is out of range and no
     * defaultValue is specified.
     */
-    get(row: number, column: number, defaultValue?: boolean) {
-
+    get(row: number, column: number, defaultValue?: boolean) : boolean {
         try {
             this._checkRange("Row", row);
             this._checkRange("Column", column, this._board[row].length);

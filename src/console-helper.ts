@@ -87,10 +87,10 @@ export class ConsoleHelper {
     
     /**
     * Moves the TTY cursor left the specified number of columns
-    * @param {number} numRows - The number of columns to move the cursor left.
+    * @param {number} numCols - The number of columns to move the cursor left.
     */
-    moveLeft(numRows : number = 1) : void {
-        this.stdout.write(`${ConsoleHelper.ESC}${numRows}${ConsoleHelper.terminalCommands.moveLeft}`)
+    moveLeft(numCols : number = 1) : void {
+        this.stdout.write(`${ConsoleHelper.ESC}${numCols}${ConsoleHelper.terminalCommands.moveLeft}`)
     }
     
     /**
@@ -199,7 +199,7 @@ export class ConsoleHelper {
     * @param {number} defaultValue - The index of the default option.
     * @returns A promise which will resolve to the index of the selected option once user interactino is complete.
     */
-    async menu(title : string, options : string[], defaultValue ?: number) {
+    async menu(title : string, options : string[], defaultValue ?: number) : Promise<number> {
         this.stdout.write(`  | ${title}\n`);
         this.stdout.write(`--|-------------------------\n`);
         for (let option : number = 0; option < options.length; option++) {

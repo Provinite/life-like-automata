@@ -36,7 +36,7 @@ export class BitOperations {
     * @throws **RangeError** If start is less than or equal to zero.
     * @returns The modified `bitString`
     */
-    static unsetSignificantBits(bitString : number, start : number) {
+    static unsetSignificantBits(bitString : number, start : number) : number {
         if (start < 0) {
             throw new RangeError("Start must be greater than or equal to zero.");
         }
@@ -60,7 +60,7 @@ export class BitOperations {
     * @param {number} magnitude - The number of bits by which to shift.
     * @returns The modified `bitString`
     */
-    static shiftLeft(bitString : number, magnitude : number = 1) {
+    static shiftLeft(bitString : number, magnitude : number = 1) : number {
         return bitString << magnitude;
     }
 }
