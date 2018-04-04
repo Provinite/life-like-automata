@@ -93,26 +93,61 @@
 					<div class="tsd-signature tsd-kind-icon">Prompt<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L1">console-helper.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L4">console-helper.ts:4</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Options object type for use with <code>ConsoleHelper.prompt</code></p>
+						</div>
+					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter">
 								<h5><span class="tsd-flag ts-flagOptional">Optional</span> default<wbr>Value<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The default value to return if no input is given.</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5><span class="tsd-flag ts-flagOptional">Optional</span> format<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Flag to indicate whether the prompt should be formatted.
+											If true, the prompt will be displayed as <code>message:</code> or <code>message [defaultValue]:</code>
+											If false, the prompt will be exactly <code>message</code>
+										Defaults to <code>true</code></p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The message to prompt the user with.</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5><span class="tsd-flag ts-flagOptional">Optional</span> terminate<wbr>On<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The character to stop reading input on. Defaults to <code>&quot;\n&quot;</code></p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5><span class="tsd-flag ts-flagOptional">Optional</span> validator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Validator function to approve or reject responses. This will be called
+											each time the user submits a response. Defaults to <code>() =&gt; true</code> (approve all).
+										If the response is judged invalid, the user will be prompted again.</p>
+									</div>
+								</div>
 								<ul class="tsd-parameters">
 									<li class="tsd-parameter-siganture">
 										<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable tsd-is-not-exported">

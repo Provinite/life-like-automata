@@ -69,6 +69,18 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Console Helper class designed to assist in interactive console application development</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>author</dt>
+						<dd><p>Collin Driscoll</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -128,16 +140,31 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L11">console-helper.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L48">console-helper.ts:48</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a new ConsoleHelper and sets the specified <code>stdin</code> to flowing mode.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> stdin: <span class="tsd-signature-type">ReadStream</span><span class="tsd-signature-symbol"> =&nbsp;process.stdin</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The stream from which user input should be gathered.</p>
+										</div>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> stdout: <span class="tsd-signature-type">WriteStream</span><span class="tsd-signature-symbol"> =&nbsp;process.stdout</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The stream to which output should be sent.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_console_helper_.consolehelper.html" class="tsd-signature-type">ConsoleHelper</a></h4>
@@ -150,22 +177,32 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="stdin" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> stdin</h3>
-					<div class="tsd-signature tsd-kind-icon">stdin<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<div class="tsd-signature tsd-kind-icon">stdin<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ReadStream</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L10">console-helper.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L44">console-helper.ts:44</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>ReadStream from which user input is read.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="stdout" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> stdout</h3>
-					<div class="tsd-signature tsd-kind-icon">stdout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<div class="tsd-signature tsd-kind-icon">stdout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">WriteStream</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L11">console-helper.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L48">console-helper.ts:48</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>WriteStream upon which output is written.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
 					<a name="esc" class="tsd-anchor"></a>
@@ -173,9 +210,14 @@
 					<div class="tsd-signature tsd-kind-icon">ESC<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;[&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L20">console-helper.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L65">console-helper.ts:65</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>TTY escape sequence constant.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -190,9 +232,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L39">console-helper.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L99">console-helper.ts:99</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Erases all text from the cursor to the end of the current line</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -207,22 +254,39 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L120">console-helper.ts:120</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L202">console-helper.ts:202</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Simple helper method to display a menu and allow a user to select from several choices
+										Formatting is very basic, so displaying more than 9 menu options will look bad.
+									User will be re-prompted on an invalid selection.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>title: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the menu (displayed along the top row).</p>
+									</div>
 								</li>
 								<li>
 									<h5>options: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The choices to present to the user.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> defaultValue: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The index of the default option.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The index of the selected option.</p>
 						</li>
 					</ul>
 				</section>
@@ -236,13 +300,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L35">console-helper.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L92">console-helper.ts:92</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Moves the TTY cursor left the specified number of columns</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> numRows: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of columns to move the cursor left.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -259,13 +331,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L31">console-helper.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L84">console-helper.ts:84</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Moves the TTY cursor up the specified number of rows</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> numRows: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of rows to move the cursor upward.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -283,24 +363,37 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L51">console-helper.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L125">console-helper.ts:125</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Prompts the user with a given message and default value (if provided) and
+									return the response. @see PromptOptions for configuration details.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The message to prompt with.</p>
+									</div>
 								</li>
 								<li>
 									<h5>defaultValue: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The default value to return if no input is given.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise which will resolve with the response once user interaction is complete.</p>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L52">console-helper.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L126">console-helper.ts:126</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -323,9 +416,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L47">console-helper.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L113">console-helper.ts:113</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd></dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -340,9 +439,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L43">console-helper.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L106">console-helper.ts:106</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd></dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -356,16 +461,21 @@
 					<div class="tsd-signature tsd-kind-icon">terminal<wbr>Commands<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L21">console-helper.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L70">console-helper.ts:70</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Some constants to improve readability when sending escape sequences.</p>
+						</div>
+					</div>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="terminalcommands.erasetoeol-1" class="tsd-anchor"></a>
 						<h3>erase<wbr>ToEOL</h3>
 						<div class="tsd-signature tsd-kind-icon">erase<wbr>ToEOL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;${ConsoleHelper.ESC}K&#x60;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L28">console-helper.ts:28</a></li>
+								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L77">console-helper.ts:77</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -375,7 +485,7 @@
 						<div class="tsd-signature tsd-kind-icon">move<wbr>Down<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;B&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L23">console-helper.ts:23</a></li>
+								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L72">console-helper.ts:72</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -385,7 +495,7 @@
 						<div class="tsd-signature tsd-kind-icon">move<wbr>Left<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;D&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L24">console-helper.ts:24</a></li>
+								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L73">console-helper.ts:73</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -395,7 +505,7 @@
 						<div class="tsd-signature tsd-kind-icon">move<wbr>Right<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;C&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L25">console-helper.ts:25</a></li>
+								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L74">console-helper.ts:74</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -405,7 +515,7 @@
 						<div class="tsd-signature tsd-kind-icon">move<wbr>Up<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;A&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L22">console-helper.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L71">console-helper.ts:71</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -415,7 +525,7 @@
 						<div class="tsd-signature tsd-kind-icon">restore<wbr>Cursor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;${ConsoleHelper.ESC}u&#x60;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L27">console-helper.ts:27</a></li>
+								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L76">console-helper.ts:76</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -425,7 +535,7 @@
 						<div class="tsd-signature tsd-kind-icon">save<wbr>Cursor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;${ConsoleHelper.ESC}s&#x60;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/console-helper.ts#L26">console-helper.ts:26</a></li>
+								<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/aa33f4c/src/console-helper.ts#L75">console-helper.ts:75</a></li>
 							</ul>
 						</aside>
 					</section>

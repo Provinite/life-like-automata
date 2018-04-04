@@ -1,15 +1,57 @@
+/**
+* Options object type for use with `ConsoleHelper.prompt`
+*/
 type PromptOptions = {
+    /**
+    * The message to prompt the user with.
+    */
     message: string,
+    
+    /**
+    * The default value to return if no input is given.
+    */
     defaultValue ?: any,
+    
+    /**
+    * The character to stop reading input on. Defaults to `"\n"`
+    */
     terminateOn ?: string,
+    
+    /**
+    * Validator function to approve or reject responses. This will be called
+    * each time the user submits a response. Defaults to `() => true` (approve all).
+    * If the response is judged invalid, the user will be prompted again. 
+    */
     validator ?: (string) => boolean,
+    
+    /**
+    * Flag to indicate whether the prompt should be formatted.
+    * If true, the prompt will be displayed as `message: ` or `message [defaultValue]: `
+    * If false, the prompt will be exactly `message`
+    * Defaults to `true`
+    */
     format ?: boolean
 };
 
+/**
+* Console Helper class designed to assist in interactive console application development
+* @author Collin Driscoll
+*/
 export class ConsoleHelper {
-    private stdin;
-    private stdout;
+    /**
+    * ReadStream from which user input is read.
+    */
+    private stdin : NodeJS.ReadStream;
+    /**
+    * WriteStream upon which output is written.
+    */
+    private stdout : NodeJS.WriteStream;
     
+    /**
+    * Creates a new ConsoleHelper and sets the specified `stdin` to flowing mode.
+    * @param {ReadStream} stdin - The stream from which user input should be gathered.
+    * @param {WriteStream} stdout - The stream to which output should be sent.
+    */
     constructor(stdin = process.stdin, stdout = process.stdout) {
         this.stdin = stdin;
         this.stdout = stdout;
@@ -17,7 +59,14 @@ export class ConsoleHelper {
         stdin.resume();
     }
     
+    /**
+    * TTY escape sequence constant.
+    */
     private static readonly ESC : string = "\x1B[";
+    
+    /**
+    * Some constants to improve readability when sending escape sequences.
+    */
     private static readonly terminalCommands = {
         moveUp: "A",
         moveDown: "B",
@@ -28,26 +77,51 @@ export class ConsoleHelper {
         eraseToEOL: `${ConsoleHelper.ESC}K`,
     }
     
+    /**
+    * Moves the TTY cursor up the specified number of rows
+    * @param {number} numRows - The number of rows to move the cursor upward.
+    */
     moveUp(numRows : number = 1) : void {
         this.stdout.write(`${ConsoleHelper.ESC}${numRows}${ConsoleHelper.terminalCommands.moveUp}`);
     }
     
+    /**
+    * Moves the TTY cursor left the specified number of columns
+    * @param {number} numRows - The number of columns to move the cursor left.
+    */
     moveLeft(numRows : number = 1) : void {
         this.stdout.write(`${ConsoleHelper.ESC}${numRows}${ConsoleHelper.terminalCommands.moveLeft}`)
     }
     
+    /**
+    * Erases all text from the cursor to the end of the current line
+    */
     eraseToEOL() : void {
         this.stdout.write(ConsoleHelper.terminalCommands.eraseToEOL);
     }
     
+    /**
+    * @deprecated
+    */
     saveCursor() : void {
         this.stdout.write(ConsoleHelper.terminalCommands.saveCursor);
     }
     
+    /**
+    * @deprecated
+    */
     restoreCursor() : void {
         this.stdout.write(ConsoleHelper.terminalCommands.restoreCursor);
     }
     
+    /**
+        Prompts the user with a given message and default value (if provided) and
+        return the response. @see PromptOptions for configuration details.
+        @param {string} message - The message to prompt with.
+        @param {any} defaultValue - The default value to return if no input is given.
+        @param {PromptOptions} options - @see PromptOptions documentation for details.
+        @returns A promise which will resolve with the response once user interaction is complete.
+    */
     async prompt(message : string, defaultValue : any) : Promise<any>;
     async prompt(options : PromptOptions) : Promise<any>;
     async prompt(optionsOrMessage : string | PromptOptions, defaultValue ?: any) : Promise<any> {
@@ -116,7 +190,15 @@ export class ConsoleHelper {
         });
     }
     
-    //keep options to one digit
+    /**
+    * Simple helper method to display a menu and allow a user to select from several choices
+    * Formatting is very basic, so displaying more than 9 menu options will look bad.
+    * User will be re-prompted on an invalid selection.
+    * @param {string} title - The name of the menu (displayed along the top row).
+    * @param {string[]} options - The choices to present to the user.
+    * @param {number} defaultValue - The index of the default option.
+    * @returns The index of the selected option.
+    */
     async menu(title : string, options : string[], defaultValue ?: number) {
         this.stdout.write(`  | ${title}\n`);
         this.stdout.write(`--|-------------------------\n`);
