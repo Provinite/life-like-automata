@@ -119,7 +119,10 @@ export class ConsoleHelper {
         };
                 
         if (typeof optionsOrMessage == "string") {
-            options = {message: optionsOrMessage};
+            options = {
+                message: optionsOrMessage,
+                defaultValue : defaultValue
+            };
         } else {
             options = optionsOrMessage;
         }
