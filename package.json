@@ -30,6 +30,7 @@
         ],
         "exclude": [
             "**/*.spec.ts",
+            "doc/*",
             "dist/*",
             "coverage/*"
         ],
