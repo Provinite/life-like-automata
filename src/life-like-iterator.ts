@@ -40,7 +40,7 @@ export class LifeLikeIterator {
                 let neighborhood : number;
                 for (let col : number = 0; col < board.getRowLength(row); col++) {
                     if (col == 0) {
-                        neighborhood = NeighborhoodUtils.getNeighborhoodBitString(board, row, col);
+                        neighborhood = NeighborhoodUtils.getNeighborhood(board, row, col);
                     } else {
                         neighborhood = NeighborhoodUtils.slideNeighborhoodRight(neighborhood);
                         neighborhood = NeighborhoodUtils.setCell(neighborhood, NeighborhoodPositions.TOP_RIGHT, board.get(row - 1, col + 1, false));

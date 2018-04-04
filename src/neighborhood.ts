@@ -2,7 +2,20 @@ import { GameBoard } from './game-board'
 import { BitOperations } from './bit-operations'
 
 /**
-* A neighborhood is represnted by a bit string.
+* A neighborhood is represnted by a bit string. The index of each cell's data 
+* in the bitstring is shown in the diagram below.
+*``` 
+* 8 5 2
+* 7 4 1
+* 6 3 0
+*```
+* For example, the neighborhood
+* ```
+* 1 1 0
+* 0 1 0
+* 1 1 1
+* ```
+* Would be represented by the bitstring 100111101 = 317
 */
 export type Neighborhood = number;
 
@@ -27,17 +40,13 @@ export const enum NeighborhoodPositions {
 */
 export class NeighborhoodUtils {
     /** 
-    * Generates a bitstring for the 3x3 neighborhood around (x, y). The index
-    * of each cell's data in the bitstring is shown in the diagram below. 
-    * 8 5 2
-    * 7 4 1
-    * 6 3 0
+    * Generates a bitstring (Neighborhood) for the 3x3 neighborhood around (x, y).
     * @param {GameBoard} board - The game state to read.
     * @param {number} x - The x position of the central cell of the neighborhood.
     * @param {number} y - The y position of the central cell of the neighborhood.
     * @returns A bit-string representing the given neighborhood.
     */
-    static getNeighborhoodBitString(board: GameBoard, x: number, y: number): number {
+    static getNeighborhood(board: GameBoard, x: number, y: number): Neighborhood {
         let result: number = 0;
         let idx = 0;
         //iterate over the neighborhood from bottom-right to top-left
@@ -52,18 +61,18 @@ export class NeighborhoodUtils {
 
     /**
     * Used to efficiently maintain a sliding window while iterating over GameBoards.
-    * @param {number} bitString - The neighborhood to modify
+    * @param {number} neighborhood - The neighborhood to modify
     * @returns The neighborhood with its cells shifted 1 position to the left.
     * The rightmost cells are filled with `false`. The leftmost cells are lost.
     */
-    static slideNeighborhoodRight(bitString: number) {
+    static slideNeighborhoodRight(neighborhood: Neighborhood) {
         //trim the most significant 3 bits
-        bitString = BitOperations.unsetSignificantBits(bitString, 6);
+        neighborhood = BitOperations.unsetSignificantBits(neighborhood, 6);
 
         //shift new data into the same space
-        bitString = BitOperations.shiftLeft(bitString, 3);
+        neighborhood = BitOperations.shiftLeft(neighborhood, 3);
 
-        return bitString;
+        return neighborhood;
     }
 
     /**
@@ -98,7 +107,7 @@ export class NeighborhoodUtils {
         if (arr.length != 3 || arr[0].length != 3 || arr[1].length != 3 || arr[2].length != 3) {
             throw new RangeError("Neighborhoods can only be constructed from 3x3 square boolean arrays.");
         }
-        let result: number = 0;
+        let result: Neighborhood = 0;
         let idx: number = 0;
         let x: number = 1;
         let y: number = 1;
