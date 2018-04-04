@@ -72,8 +72,6 @@ export class ConsoleHelper {
         moveDown: "B",
         moveLeft: "D",
         moveRight: "C",
-        saveCursor: `${ConsoleHelper.ESC}s`,
-        restoreCursor: `${ConsoleHelper.ESC}u`,
         eraseToEOL: `${ConsoleHelper.ESC}K`,
     }
     
@@ -98,20 +96,6 @@ export class ConsoleHelper {
     */
     eraseToEOL() : void {
         this.stdout.write(ConsoleHelper.terminalCommands.eraseToEOL);
-    }
-    
-    /**
-    * @deprecated
-    */
-    saveCursor() : void {
-        this.stdout.write(ConsoleHelper.terminalCommands.saveCursor);
-    }
-    
-    /**
-    * @deprecated
-    */
-    restoreCursor() : void {
-        this.stdout.write(ConsoleHelper.terminalCommands.restoreCursor);
     }
     
     /**
