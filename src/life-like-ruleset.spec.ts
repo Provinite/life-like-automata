@@ -10,17 +10,17 @@ describe("LifeLikeRuleset", () => {
             expect(() => new LifeLikeRuleset("")).to.throw(RangeError);
         });
         
-        let badData = [
+        let rangeErrorData = [
             "bad rules",
             "B23/S23",
             "B2a",
             "23BS",
-            null,
-            undefined
+            null
         ];
-        for (let data of badData) {
-            it(`should error on ruleset: "${data}"`, () => {
-                expect(() => new LifeLikeRuleset(data)).to.throw();
+        
+        for (let data of rangeErrorData) {
+            it(`should throw a RangeError on ruleset: "${data}"`, () => {
+                expect(() => new LifeLikeRuleset(data)).to.throw(RangeError);
             });
         }
     });

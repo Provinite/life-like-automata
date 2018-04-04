@@ -45,8 +45,12 @@ export class LifeLikeRuleset implements RuleSet<Neighborhood, boolean>  {
     * Neighbor counts appearing after a `B` will cause dead cells to come to life (**B**irth).
     * Neighbor counts appearing after a `S` will cause live cells to remain living (**S**urvive).
     * For example, Conway's Game of Life would use the ruleset B3S23 (Born with 3 neighbors, Survive with 2 or 3).
+    * @throws **RangeError** if `rules` is an invalid rule string.
     */
     constructor(rules: string = LifeLikeRuleset.NAMED_GAMES.LIFE) {
+        if (rules === null || rules.length == 0) {
+            throw new RangeError("The rules string must not be null or empty.")
+        }
         rules = rules.toUpperCase();
         //Array that maps number of live neighbors + current value to an action
         let neighborCountRules: CellAction[][] = [];
@@ -57,11 +61,11 @@ export class LifeLikeRuleset implements RuleSet<Neighborhood, boolean>  {
         let curAction: string = null;
         for (let i: number = 0; i < rules.length; i++) {
             let curChar : String = rules[i];
-            //update the action that we're applying from here on out
             if (curChar.match(/[B,S]/)) {
+                //update the action that we're applying from here on out
                 curAction = rules[i];
-                //apply the last indicated action to any digits
             } else if (curChar.match(/\d/)) {
+                //apply the last indicated action to any digits
                 if (curAction == null) {
                     throw new RangeError(LifeLikeRuleset.ERROR_INVALID_RULE_STRING)
                 }
