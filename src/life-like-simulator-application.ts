@@ -9,7 +9,7 @@ export class LifeLikeSimulatorApplication {
         this.ui = new ConsoleHelper(this.stdin, this.stdout);
     }
     
-    static randomBoard (rows : number = 10, columns : number = 10) : GameBoard {
+    private static randomBoard (rows : number = 10, columns : number = 10) : GameBoard {
         let boardRow : boolean[];
         let board : boolean[][] = [];
         for (let row : number = 0; row < rows; row++) {
@@ -22,7 +22,7 @@ export class LifeLikeSimulatorApplication {
         return GameBoard.fromBooleanArray(board);
     }
     
-    async getBoard(retry : boolean = true) : Promise<GameBoard> {
+    private async getBoard(retry : boolean = true) : Promise<GameBoard> {
         let booleanArray : boolean[][];
         let isValid : boolean = true;
         let resultRows : string[];
@@ -70,7 +70,7 @@ export class LifeLikeSimulatorApplication {
         return GameBoard.fromBooleanArray(booleanArray);
     }
     
-    drawBoard (board : GameBoard) : void {
+    private drawBoard (board : GameBoard) : void {
         let data : boolean[][] = board.toBooleanArray();
         for (let row : number = 0; row < data.length; row++) {
             this.ui.eraseToEOL();
@@ -81,7 +81,7 @@ export class LifeLikeSimulatorApplication {
         }
     }
     
-    async animateBoard(iterator : LifeLikeIterator, board : GameBoard, generations : number = 1, delayMs : number = 500) : Promise<GameBoard> {
+    private async animateBoard(iterator : LifeLikeIterator, board : GameBoard, generations : number = 1, delayMs : number = 500) : Promise<GameBoard> {
         return new Promise<GameBoard>(resolve => {
             this.stdout.write("Generation: 0\n")
             this.drawBoard(board);
