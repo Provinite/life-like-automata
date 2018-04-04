@@ -36,7 +36,13 @@ let getBoard = async (retry : boolean = true) : Promise<GameBoard> => {
             message: "Enter your start state. Enter a semicolon (;) to finish. Enter \";\" to use a randomized board [random] \n", 
             defaultValue: "random",
             terminateOn: ";",
-            format: false
+            format: false,
+            validator: (response : string) => {
+                if (response.trim().length == 0) {
+                    return false;
+                }
+                return true;
+            }
         });
         
         booleanArray = [];
