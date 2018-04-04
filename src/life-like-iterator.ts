@@ -54,11 +54,4 @@ export class LifeLikeIterator {
             return GameBoard.fromBooleanArray(newBoard);
         }
     }
-    
-    /**
-    * @deprecated
-    */
-    runCell(board: GameBoard, x: number, y: number): boolean {
-        return false;
-    }
 }
