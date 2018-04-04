@@ -11,7 +11,7 @@ export class LifeLikeIterator {
     /**
     * This ruleset will be used to update each cell based on its neighborhood.
     */
-    private ruleset : RuleSet<Neighborhood, boolean>;
+    private _ruleset : RuleSet<Neighborhood, boolean>;
     
     /**
     * Creates a LifeLikeIterator that will use the given RuleSet
@@ -22,7 +22,7 @@ export class LifeLikeIterator {
         if (ruleset == undefined) {
             throw new TypeError("A ruleset is required to construct a LifeLikeIterator.");
         }
-        this.ruleset = ruleset;
+        this._ruleset = ruleset;
     }
     
     /**
@@ -47,7 +47,7 @@ export class LifeLikeIterator {
                         neighborhood = NeighborhoodUtils.setCell(neighborhood, NeighborhoodPositions.MIDDLE_RIGHT, board.get(row, col + 1, false));
                         neighborhood = NeighborhoodUtils.setCell(neighborhood, NeighborhoodPositions.BOTTOM_RIGHT, board.get(row + 1, col + 1, false));
                     }
-                    newRow.push(this.ruleset.evaluate(neighborhood));
+                    newRow.push(this._ruleset.evaluate(neighborhood));
                 }
                 newBoard.push(newRow);
             }
