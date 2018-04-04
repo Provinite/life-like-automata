@@ -14,7 +14,7 @@ type Demonstration = {
 export class LifeLikeSimulatorApplication {
     private static readonly ANIMATION_DEFAULTS = {
         generations: 10,
-        delayMs: 250
+        delayMs: 400
     }
 
     private static readonly DEMOS: Demonstration[] = [
@@ -33,6 +33,21 @@ export class LifeLikeSimulatorApplication {
             ],
             rules: LifeLikeRuleset.NAMED_GAMES.LIFE,
             generations: 20,
+        },
+        {
+            name: "Oscillators (Life)",
+            board : [
+                [0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+                [1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+                [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            ],
+            rules: LifeLikeRuleset.NAMED_GAMES.LIFE,
+            generations: 10
         }
     ]
 
