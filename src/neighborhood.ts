@@ -1,8 +1,14 @@
 import { GameBoard } from './game-board'
 import { BitOperations } from './bit-operations'
 
+/**
+* A neighborhood is represnted by a bit string.
+*/
 export type Neighborhood = number;
 
+/**
+* Enum mapping the nine Moore neighborhood positions to their bitstring indices.
+*/
 export const enum NeighborhoodPositions {
     BOTTOM_RIGHT = 0,
     MIDDLE_RIGHT = 1,
@@ -15,6 +21,10 @@ export const enum NeighborhoodPositions {
     TOP_LEFT = 8
 }
 
+/**
+* Helper class for working with neighborhoods
+* @author Collin Driscoll
+*/
 export class NeighborhoodUtils {
     /** 
     * Generates a bitstring for the 3x3 neighborhood around (x, y). The index
@@ -25,7 +35,7 @@ export class NeighborhoodUtils {
     * @param {GameBoard} board - The game state to read.
     * @param {number} x - The x position of the central cell of the neighborhood.
     * @param {number} y - The y position of the central cell of the neighborhood.
-    * @return {number} A bit-string representing the given neighborhood.
+    * @returns A bit-string representing the given neighborhood.
     */
     static getNeighborhoodBitString(board: GameBoard, x: number, y: number): number {
         let result: number = 0;
@@ -39,7 +49,13 @@ export class NeighborhoodUtils {
         }
         return result;
     }
-
+    
+    /**
+    * Used to efficiently maintain a sliding window while iterating over GameBoards.
+    * @param {number} bitString - The neighborhood to modify
+    * @returns The neighborhood with its cells shifted 1 position to the left.
+    * The rightmost cells are filled with `false`. The leftmost cells are lost.
+    */
     static slideNeighborhoodRight(bitString: number) {
         //trim the most significant 3 bits
         bitString = BitOperations.unsetSignificantBits(bitString, 6);
@@ -49,15 +65,35 @@ export class NeighborhoodUtils {
 
         return bitString;
     }
-
+    
+    /**
+    * Creates a copy of a neighborhood with the cell at the given position to a specific state.
+    * @param {Neighborhood} neighborhood - The neighborhood to operate on.
+    * @param {NeighborhoodPositions} position - The cell to modify.
+    * @param {boolean} value - The value to set.
+    * @returns A copy of the given neighborhood with the cell at `position` set to `value`.
+    */
     static setCell(neighborhood: Neighborhood, position: NeighborhoodPositions, value: boolean): Neighborhood {
         return BitOperations.setBit(neighborhood, position, value);
     }
-
+    
+    /**
+    * Reads the state of a cell.
+    * @param {Neighborhood} neighborhood - The neighborhood to read.
+    * @param {NeighborhoodPositions} position - The position of the cell to read.
+    * @returns The status of the cell at `position` in `neighborhood`.
+    */
     static getCell(neighborhood: Neighborhood, position: NeighborhoodPositions): boolean {
         return BitOperations.getBit(neighborhood, position);
     }
-
+    
+    /**
+    * Creates a Neighborhood from a 3x3 boolean array
+    * @param {boolean[][]} arr - A 3x3 array representing the desired state of the neighborhood
+    * @returns A neighborhood with the same state as `arr`.
+    * @throws **RangeError** if `arr` is not 3x3.
+    * @throws **RangeError** if any value in `arr` is neither `true` mor `false`.
+    */
     static fromBooleanArray(arr: boolean[][]): Neighborhood {
         if (arr.length != 3 || arr[0].length != 3 || arr[1].length != 3 || arr[2].length != 3) {
             throw new RangeError("Neighborhoods can only be constructed from 3x3 square boolean arrays.");
