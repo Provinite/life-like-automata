@@ -3,7 +3,39 @@ import { LifeLikeIterator } from './life-like-iterator'
 import { LifeLikeRuleset } from './life-like-ruleset'
 import { ConsoleHelper } from './console-helper'
 
+type Demonstration = {
+    name: string,
+    board: number[][] | boolean[][] | GameBoard,
+    rules: string,
+    generations?: number,
+    delayMs?: number
+}
+
 export class LifeLikeSimulatorApplication {
+    private static readonly ANIMATION_DEFAULTS = {
+        generations: 10,
+        delayMs: 250
+    }
+
+    private static readonly DEMOS: Demonstration[] = [
+        {
+            name: "Glider (Life)",
+            board: [
+                [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            ],
+            rules: LifeLikeRuleset.NAMED_GAMES.LIFE,
+            generations: 20,
+        }
+    ]
+
     private ui: ConsoleHelper;
     constructor(private stdin = process.stdin, private stdout = process.stdout) {
         this.ui = new ConsoleHelper(this.stdin, this.stdout);
@@ -70,22 +102,60 @@ export class LifeLikeSimulatorApplication {
         return GameBoard.fromBooleanArray(booleanArray);
     }
 
-    private drawBoard(board: GameBoard): void {
+    private drawBoard(board: GameBoard): number[] {
         let data: boolean[][] = board.toBooleanArray();
-        for (let row: number = 0; row < data.length; row++) {
+        let cols : number = board.getRowLength(0);
+
+        let BOX_CHARS = {
+            TOP_LEFT: "╔",
+            TOP_RIGHT: "╗",
+            BOTTOM_LEFT: "╚",
+            BOTTOM_RIGHT: "╝",
+            HORIZONTAL: "═",
+            VERTICAL: "║"
+        } 
+        
+        let writeBoxTop = () => {
             this.ui.eraseToEOL();
-            for (let col: number = 0; col < data[row].length; col++) {
-                this.stdout.write(String(data[row][col] ? 1 : 0) + " ");
-            }
+            this.stdout.write(BOX_CHARS.TOP_LEFT);
+            this.stdout.write(BOX_CHARS.HORIZONTAL.repeat(cols));
+            this.stdout.write(BOX_CHARS.TOP_RIGHT);
             this.stdout.write("\n");
         }
+        
+        let writeBoxBottom = () => {
+            this.ui.eraseToEOL();
+            this.stdout.write(BOX_CHARS.BOTTOM_LEFT);
+            this.stdout.write(BOX_CHARS.HORIZONTAL.repeat(cols));
+            this.stdout.write(BOX_CHARS.BOTTOM_RIGHT);
+            this.stdout.write("\n");
+        }
+        
+        let writeRow = (row : boolean[]) => {
+            this.ui.eraseToEOL();
+            this.stdout.write(BOX_CHARS.VERTICAL);
+            for (let col: number = 0; col < row.length; col++) {
+                this.stdout.write(row[col] ? "x" : ".");
+            }
+            this.stdout.write(BOX_CHARS.VERTICAL);
+            this.stdout.write("\n");
+        }
+        
+        writeBoxTop();
+        for (let row of data) {
+            writeRow(row);
+        }
+        writeBoxBottom();
+        
+        return [board.getRowCount() + 2, board.getRowLength(board.getRowCount() - 1)];
     }
 
     private async animateBoard(iterator: LifeLikeIterator, board: GameBoard, generations: number = 1, delayMs: number = 500): Promise<GameBoard> {
         return new Promise<GameBoard>(resolve => {
             this.stdout.write("Generation: 0\n")
-            this.drawBoard(board);
-            let offset: number[] = [board.getRowCount() + 1, board.getRowLength(board.getRowCount() - 1)];
+            let offset: number[] = this.drawBoard(board);
+            offset[0]++;
+            
             this.ui.moveUp(offset[0]);
             this.ui.moveLeft(offset[1]);
             let generation: number = 0;
@@ -130,8 +200,8 @@ export class LifeLikeSimulatorApplication {
                 "Demos",
                 "Exit"
             ];
-            
-            response = await this.ui.menu("Main Menu", mainMenuOptions)
+
+            response = await this.ui.menu("Main Menu", mainMenuOptions, 1)
             if (response == RESPONSE.LIFE || response == RESPONSE.REPLICATOR || response == RESPONSE.CUSTOM) {
                 this.stdout.write("\n");
                 let rulesetString: string;
@@ -139,12 +209,12 @@ export class LifeLikeSimulatorApplication {
                     this.stdout.write("Let's simulate a life automaton.\n\n");
                     rulesetString = LifeLikeRuleset.NAMED_GAMES.LIFE;
                     ruleset = new LifeLikeRuleset(rulesetString);
-                    
+
                 } else if (response == RESPONSE.REPLICATOR) {
                     this.stdout.write("Let's simulate a replicator automaton.\n\n");
                     rulesetString = LifeLikeRuleset.NAMED_GAMES.REPLICATOR;
                     ruleset = new LifeLikeRuleset(rulesetString);
-                    
+
                 } else if (response == RESPONSE.CUSTOM) {
                     this.stdout.write("Let's create a custom life-like automaton.\n\n");
                     while (ruleset == undefined) {
@@ -153,7 +223,7 @@ export class LifeLikeSimulatorApplication {
                             "For example enter \"23\" if cells should be born when they have 2 or 3 neighbors.\n"
                         )
                         let birthString = await this.ui.prompt("Cells are born on", "3");
-                        
+
                         this.stdout.write("\nNow enter all neighbor counts that should result in a cell surviving if it is already alive.\n");
                         let surviveString = await this.ui.prompt("Cells survive on", "23");
                         this.stdout.write("\n");
@@ -171,26 +241,68 @@ export class LifeLikeSimulatorApplication {
                 let isNumericAndGreaterThanZero = (data: any) => !Number.isNaN(+data) && +data > 0
                 let generations: number = +await this.ui.prompt({
                     message: "Number of generations to simulate",
-                    defaultValue: 10,
+                    defaultValue: LifeLikeSimulatorApplication.ANIMATION_DEFAULTS.generations,
                     validator: isNumericAndGreaterThanZero
                 });
 
                 let delay: number = +await this.ui.prompt({
                     message: "Time between generations (milliseconds)",
-                    defaultValue: 250,
+                    defaultValue: LifeLikeSimulatorApplication.ANIMATION_DEFAULTS.delayMs,
                     validator: isNumericAndGreaterThanZero
                 });
-                this.stdout.write(`\n[${rulesetString}] for ${generations} generations @ ${delay}ms\n\n`);
-                board = await this.animateBoard(iterator, board, generations, delay);
                 this.stdout.write("\n");
+                this._printAnimationDetails(rulesetString, generations, delay);
+                this.stdout.write("\n");
+                board = await this.animateBoard(iterator, board, generations, delay);
             } else if (response == RESPONSE.DEMOS) {
-                this.demos();
+                await this.demos();
             }
+            this.stdout.write("\n");
         } while (response != RESPONSE.EXIT)
         this.stdout.write("\nGoodbye!")
     }
 
-    demos(): void {
+    async demos() {
+        let options = [];
+        for (let demo of LifeLikeSimulatorApplication.DEMOS) {
+            options.push(demo.name);
+        }
+        let selection: number = await this.ui.menu("Demonstrations", options, 1);
+        let demo: Demonstration = LifeLikeSimulatorApplication.DEMOS[selection];
+        return this.runDemo(demo);
+    }
 
+    async runDemo(demo: Demonstration): Promise<GameBoard> {
+        let defaults = {
+            generations: LifeLikeSimulatorApplication.ANIMATION_DEFAULTS.generations,
+            delayMs: LifeLikeSimulatorApplication.ANIMATION_DEFAULTS.delayMs,
+        }
+        if (demo.generations == undefined) { demo.generations = defaults.generations }
+        if (demo.delayMs == undefined) { demo.delayMs = defaults.delayMs };
+
+        let ruleset: LifeLikeRuleset = new LifeLikeRuleset(demo.rules);
+        let iterator: LifeLikeIterator = new LifeLikeIterator(ruleset);
+        let board: GameBoard;
+        if (demo.board instanceof GameBoard) {
+            board = demo.board;
+        } else if (typeof demo.board[0][0] == "boolean") {
+            board = GameBoard.fromBooleanArray(<boolean[][]>demo.board);
+        } else if (typeof demo.board[0][0] == "number") {
+            board = GameBoard.fromBooleanArray(
+                (<number[][]>demo.board).map(row => row.map(cell => cell == 0 ? false : true))
+            )
+        }
+
+        this.stdout.write(`Running demo: ${demo.name}\n\n`)
+        this._printAnimationDetails(demo.rules, demo.generations, demo.delayMs);
+        this.stdout.write("\n");
+        return this.animateBoard(iterator, board, demo.generations, demo.delayMs);
+    }
+
+    private _printAnimationDetails(rulesetString: string,
+        generations: number = LifeLikeSimulatorApplication.ANIMATION_DEFAULTS.generations,
+        delayMs: number = LifeLikeSimulatorApplication.ANIMATION_DEFAULTS.delayMs
+    ) {
+        this.stdout.write(`[${rulesetString}] for ${generations} generations @ ${delayMs}ms\n`);
     }
 }
