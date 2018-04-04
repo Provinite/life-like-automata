@@ -1,5 +1,6 @@
 /**
 * Helper class to perform bitwise operations on numbers.
+* @author Collin Driscoll
 */
 export class BitOperations {
     
@@ -8,7 +9,9 @@ export class BitOperations {
     * @param {number} bitString - The bitString upon which to operate.
     * @param {number} index - The (zero-indexed) index of the bit to set.
     * @param {boolean} value - The value to set the bit to. Must be true or false.
-    * @return {number} The modified bitString.
+    * @throws **RangeError** if `value` is not `true` or `false`
+    * @throws **RangeError** if `index` is less than zero
+    * @returns {number} The modified `bitString`.
     */
     static setBit(bitString : number, index : number, value : boolean) : number {
         if (value !== true && value !== false) {
@@ -26,10 +29,12 @@ export class BitOperations {
     }
     
     /**
-    * Sets all bits of equal or greater significance than the start index to
-    * a given value.
+    * Unsets all bits of equal or greater significance than the start index.
+    * @param {number} bitString - The bitString upon which to operate.
     * @param {number} start - The first bit to unset.
     * @param {boolean} value - The value to change the bits to.
+    * @throws **RangeError** If start is less than or equal to zero.
+    * @returns The modified `bitString`
     */
     static unsetSignificantBits(bitString : number, start : number) {
         if (start < 0) {
@@ -39,6 +44,12 @@ export class BitOperations {
         return bitString % mask;
     }
     
+    /**
+    * Gets the value of the bit at a specific index.
+    * @param {number} bitString - The bitString upon which to operate.
+    * @param {number} index - The index of the bit to read.
+    * @returns `true` if the bit at `index` is set, `false` otherwise
+    */ 
     static getBit(bitString : number, index : number) : boolean {
         return (bitString & (1 << index)) != 0;
     }
@@ -47,6 +58,7 @@ export class BitOperations {
     * Shifts the given bitString left by the specified magnitude.
     * @param {number} bitString - The bit string upon which to operate.
     * @param {number} magnitude - The number of bits by which to shift.
+    * @returns The modified `bitString`
     */
     static shiftLeft(bitString : number, magnitude : number = 1) {
         return bitString << magnitude;

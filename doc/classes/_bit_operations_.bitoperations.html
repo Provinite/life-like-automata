@@ -74,6 +74,11 @@
 					<div class="lead">
 						<p>Helper class to perform bitwise operations on numbers.</p>
 					</div>
+					<dl class="tsd-comment-tags">
+						<dt>author</dt>
+						<dd><p>Collin Driscoll</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -112,19 +117,31 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in bit-operations.ts:42</li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/bit-operations.ts#L53">bit-operations.ts:53</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the value of the bit at a specific index.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>bitString: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The bitString upon which to operate.</p>
+									</div>
 								</li>
 								<li>
 									<h5>index: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The index of the bit to read.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p><code>true</code> if the bit at <code>index</code> is set, <code>false</code> otherwise</p>
 						</li>
 					</ul>
 				</section>
@@ -138,13 +155,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in bit-operations.ts:13</li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/bit-operations.ts#L16">bit-operations.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Sets or unsets a specific bit in the given bitString.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p><strong>RangeError</strong> if <code>value</code> is not <code>true</code> or <code>false</code></p>
+									</dd>
+									<dt>throws</dt>
+									<dd><p><strong>RangeError</strong> if <code>index</code> is less than zero</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -168,7 +193,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>The modified bitString.</p>
+							<p>The modified <code>bitString</code>.</p>
 						</li>
 					</ul>
 				</section>
@@ -182,7 +207,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in bit-operations.ts:51</li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/bit-operations.ts#L63">bit-operations.ts:63</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -206,6 +231,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>The modified <code>bitString</code></p>
 						</li>
 					</ul>
 				</section>
@@ -219,19 +245,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in bit-operations.ts:34</li>
+									<li>Defined in <a href="https://github.com/Provinite/life-like-automata/blob/2be1876/src/bit-operations.ts#L39">bit-operations.ts:39</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Sets all bits of equal or greater significance than the start index to
-									a given value.</p>
+									<p>Unsets all bits of equal or greater significance than the start index.</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p><strong>RangeError</strong> If start is less than or equal to zero.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>bitString: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The bitString upon which to operate.</p>
+									</div>
 								</li>
 								<li>
 									<h5>start: <span class="tsd-signature-type">number</span></h5>
@@ -241,6 +274,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>The modified <code>bitString</code></p>
 						</li>
 					</ul>
 				</section>
@@ -269,6 +303,9 @@
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_life_like_ruleset_.html">"life-<wbr>like-<wbr>ruleset"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_life_like_simulator_application_.html">"life-<wbr>like-<wbr>simulator-<wbr>application"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_neighborhood_.html">"neighborhood"</a>
