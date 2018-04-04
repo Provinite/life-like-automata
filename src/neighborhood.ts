@@ -49,7 +49,7 @@ export class NeighborhoodUtils {
         }
         return result;
     }
-    
+
     /**
     * Used to efficiently maintain a sliding window while iterating over GameBoards.
     * @param {number} bitString - The neighborhood to modify
@@ -65,7 +65,7 @@ export class NeighborhoodUtils {
 
         return bitString;
     }
-    
+
     /**
     * Creates a copy of a neighborhood with the cell at the given position to a specific state.
     * @param {Neighborhood} neighborhood - The neighborhood to operate on.
@@ -76,7 +76,7 @@ export class NeighborhoodUtils {
     static setCell(neighborhood: Neighborhood, position: NeighborhoodPositions, value: boolean): Neighborhood {
         return BitOperations.setBit(neighborhood, position, value);
     }
-    
+
     /**
     * Reads the state of a cell.
     * @param {Neighborhood} neighborhood - The neighborhood to read.
@@ -86,7 +86,7 @@ export class NeighborhoodUtils {
     static getCell(neighborhood: Neighborhood, position: NeighborhoodPositions): boolean {
         return BitOperations.getBit(neighborhood, position);
     }
-    
+
     /**
     * Creates a Neighborhood from a 3x3 boolean array
     * @param {boolean[][]} arr - A 3x3 array representing the desired state of the neighborhood
