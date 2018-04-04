@@ -196,7 +196,7 @@ export class ConsoleHelper {
         let validator : (string)=>boolean = (response : string) => !Number.isNaN(+response) && +response <= options.length;
         return +await this.prompt({
             message: "Selection",
-            defaultValue: defaultValue == undefined ? undefined : defaultValue.toString(),
+            defaultValue: defaultValue,
             terminateOn: "\n",
             validator: validator
         }) - 1;
